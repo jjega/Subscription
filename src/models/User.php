@@ -12,9 +12,9 @@ use AdoptUnService\AdoptUnAPI;
 
 class User
 {
-    private $_id;
-    private $_card_number;
-    private $_cvv;
+    private $id;
+    private $card_number;
+    private $cvv;
 
     public static function CREATE($cvv, $card_number)
     {
@@ -31,21 +31,21 @@ class User
 
         $oUser = AdoptUnAPI::GET_USER($user_id);
 
-        $this->_id = $oUser->user_id;
-        $this->_card_number = $oUser->card_number;
-        $this->_cvv = $oUser->cvv;
+        $this->id = $oUser->user_id;
+        $this->card_number = $oUser->card_number;
+        $this->cvv = $oUser->cvv;
     }
 
     public function id() {
-        return $this->_id;
+        return $this->id;
     }
 
     public function cardNumber(int $card_number = null)
     {
         if ($card_number) {
-            $this->_card_number = $card_number;
+            $this->card_number = $card_number;
         } else {
-            return $this->_card_number;
+            return $this->card_number;
         }
 
     }
@@ -53,9 +53,9 @@ class User
     public function ccv(int $ccv = null)
     {
         if ($ccv) {
-            $this->_cvv = $ccv;
+            $this->cvv = $ccv;
         } else {
-            return $this->_cvv;
+            return $this->cvv;
         }
     }
 
@@ -63,6 +63,6 @@ class User
     {
         // TODO Check Data
 
-        AdoptUnAPI::UPDATE_USER($this->_id, $this->_cvv, $this->_card_number);
+        AdoptUnAPI::UPDATE_USER($this->id, $this->cvv, $this->card_number);
     }
 }

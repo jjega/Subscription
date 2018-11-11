@@ -13,11 +13,11 @@ use phpDocumentor\Reflection\Types\Integer;
 
 class Subscription
 {
-    private $_id;
-    private $_min_time;
-    private $_label;
-    private $_time_life;
-    private $_db;
+    private $id;
+    private $min_time;
+    private $label;
+    private $time_life;
+    private $db;
 
     public function __construct($id)
     {
@@ -35,23 +35,23 @@ class Subscription
     {
         // TODO Data check
 
-        $this->_store();
+        $this->store();
     }
 
     public function delete()
     {
         // TODO Delete request
 
-        $this->__destruct();
+        $this->destruct();
     }
 
     // Data i/o
     public function minTime(int $min_time = null)
     {
         if ($min_time) {
-            $this->_min_time = $min_time;
+            $this->min_time = $min_time;
         } else {
-            return $this->_min_time;
+            return $this->min_time;
         }
 
     }
@@ -59,9 +59,9 @@ class Subscription
     public function label(string $label)
     {
         if ($label) {
-            $this->_label = $label;
+            $this->label = $label;
         } else {
-            return $this->_label;
+            return $this->label;
         }
     }
 
@@ -72,18 +72,18 @@ class Subscription
     public function timeLife(int $time_life)
     {
         if ($time_life) {
-            $this->_time_life = $time_life;
+            $this->time_life = $time_life;
         } else {
-            return $this->_time_life;
+            return $this->time_life;
         }
     }
 
     public function calcEndDate()
     {
-        return time() + $this->_time_life;
+        return time() + $this->time_life;
     }
 
-    private function _store()
+    private function store()
     {
         //TODO Set on DB
     }

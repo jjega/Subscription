@@ -12,23 +12,23 @@ use AdoptUnService\AdoptUnAPI;
 
 class Transaction
 {
-    private $_id;
-    private $_user_id;
-    private $_amount;
+    private $id;
+    private $user;
+    private $amount;
 
     public function __construct($id)
     {
         $oTransaction = AdoptUnAPI::GET_TRANSACTION($id);
 
-        $this->_id = $oTransaction->transaction_id;
-        $this->_amount = $oTransaction->amount;
-        $this->_user_id = $oTransaction->user_id;
+        $this->id = $oTransaction->transaction_id;
+        $this->amount = $oTransaction->amount;
+        $this->user = new User($oTransaction->user_id);
 
     }
 
-    public static function CREATE($user_id, $amount)
+    public static function CREATE(User $user, $amount)
     {
-        $id = AdoptUnAPI::CREATE_TRANSACTION($user_id, $amount);
+        $id = AdoptUnAPI::CREATE_TRANSACTION($user->id(), $amount);
 
         return new Transaction($id);
     }
